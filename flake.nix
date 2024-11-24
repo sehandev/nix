@@ -22,7 +22,6 @@
           pkgs.vim
           pkgs.neovim
           pkgs.tmux
-          pkgs.d2coding
           pkgs.warp-terminal
         ];
       
@@ -39,6 +38,7 @@
           "gureumkim"
           "karabiner-elements"
           "qview"
+          "nikitabobko/tap/aerospace"
         ];
         masApps = {
           "TestFlight" = 899247664;
@@ -69,6 +69,13 @@
             ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
           done
         '';
+
+      system.defaults = {
+        dock.autohide = true;
+        dock.autohide-delay = 0.01;
+        NSGlobalDomain.AppleICUForce24HourTime = true;
+        NSGlobalDomain.AppleInterfaceStyle = "Dark";
+      };
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
