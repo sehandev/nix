@@ -16,39 +16,40 @@
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
+      environment.systemPackages = with pkgs;
         [
-          pkgs.mkalias
-          pkgs.vim
-          pkgs.neovim
-          pkgs.tmux
-          pkgs.warp-terminal
+          bat
+          bun
+          eza
+          mkalias
+          neovim
+          raycast
+          tmux
+          vim
+          warp-terminal
         ];
       
       homebrew = {
         enable = true;
         brews = [
+          "dust"
           "mas"
         ];
         casks = [
+          "nikitabobko/tap/aerospace"
           "alt-tab"
           "espanso"
-          "notunes"
-          "scroll-reverser"
           "gureumkim"
           "karabiner-elements"
+          "notunes"
+          "scroll-reverser"
           "qview"
-          "nikitabobko/tap/aerospace"
         ];
         masApps = {
           "TestFlight" = 899247664;
         };
-        onActivation.cleanup = "zap";
+        #onActivation.cleanup = "zap";
       };
-
-      # fonts.packages = [
-      #   (pkgs.d2coding.override { fonts = [ "D2Coding ligature Nerd"]; })
-      # ];
 
       system.activationScripts.applications.text = let
         env = pkgs.buildEnv {
